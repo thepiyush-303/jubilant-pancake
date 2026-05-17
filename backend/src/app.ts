@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import { authRouter } from "./modules/auth/auth.routes.js";
 
 // Creates the Express application and registers global middleware/routes.
 export function createApp() {
@@ -15,6 +16,9 @@ export function createApp() {
   app.get("/health", (_req, res) => {
     res.json({ status: "ok" });
   });
+
+  // Registers authentication APIs under one route prefix.
+  app.use("/api/auth", authRouter);
 
   return app;
 }

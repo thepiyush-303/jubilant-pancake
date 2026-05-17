@@ -7,4 +7,5 @@ dotenv.config();
 export const env = {
   port: Number(process.env.PORT ?? 4000),
   databaseFile: process.env.DATABASE_FILE ?? "./data/app.db",
+  jwtSecret: process.env.JWT_SECRET ?? "change-this-development-secret",
 };
