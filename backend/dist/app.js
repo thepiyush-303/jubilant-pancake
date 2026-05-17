@@ -1,6 +1,8 @@
 import cors from "cors";
 import express from "express";
 import { authRouter } from "./modules/auth/auth.routes.js";
+import { assignmentsRouter } from "./modules/assignments/assignments.routes.js";
+import { usersRouter } from "./modules/users/users.routes.js";
 // Creates the Express application and registers global middleware/routes.
 export function createApp() {
     const app = express();
@@ -14,5 +16,9 @@ export function createApp() {
     });
     // Registers authentication APIs under one route prefix.
     app.use("/api/auth", authRouter);
+    // Registers user lookup APIs used by teacher assignment forms.
+    app.use("/api/users", usersRouter);
+    // Registers assignment APIs used by teachers and students.
+    app.use("/api/assignments", assignmentsRouter);
     return app;
 }
